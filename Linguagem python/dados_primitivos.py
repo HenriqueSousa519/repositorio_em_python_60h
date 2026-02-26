@@ -23,3 +23,21 @@ print (5.0 - 100.5)
 True
 False
 
+
+# concatenação
+print ('olá mundo', 'Henrique')
+
+print ('resultado da soma', 2 + 2)
+
+print ('resultado da divisão', 2 / 2)
+
+print ('o aluno passou de ano?', True)
+
+print ('altura', 1,82)
+
+print ('valor em real', 500.0)
+
+
+
+
+
