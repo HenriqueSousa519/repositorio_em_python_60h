@@ -16,12 +16,14 @@ trex2 =  pygame.image.load('assets/trex2.png')
 trex3 =  pygame.image.load('assets/trex3.png')
 
 cacto_img1 = pygame.image.load('assets/cacto.png')
-cacto_img2 = pygame.image.load('assets/cacto2.png') 
+cacto_img2 = pygame.image.load('assets/cacto.png') 
 
 chao =  pygame.image.load('assets/chao.png')
 
 trex_x  = 100
 trex_y  = 300
+
+chao_x =  0
 
 vel_y =  0
 gravidade = 1
@@ -44,7 +46,7 @@ while True:
             sys.exit()
         if evento.type == pygame.KEYDOWN:    
             if evento.key == pygame.K_SPACE and not pulando:
-                vel_y = - 25
+                vel_y = - 21
                 pulando = True  
 
             if evento.key == pygame.K_k and game_over:
@@ -60,13 +62,13 @@ while True:
             trex_y = 300
             pulando = False
         # chao infinito
-        chao_x = -5
+        chao_x -= 5
         if chao_x <= -800:
            chao_x = 0     
 
         cacto_x  -= 5
         if cacto_x < -50:
-            cacto_x = random.randint(800,100)
+            cacto_x = random.randint(800,1000)
             score += 1
 
         # frame
@@ -82,14 +84,20 @@ while True:
 
         trex_rect = trex.get_rect(topleft = (trex_x , trex_y))
         cacto_rect =  cacto_img1.get_rect(topleft = (cacto_x, cacto_y))
+        cacto_rect2 =  cacto_img2.get_rect(topleft = (cacto_x, cacto_y))
+        
+        
         if trex_rect.colliderect(cacto_rect):
-            game_over = True
+            if trex_rect.colliderect(cacto_rect2):
+               game_over = True
+
     tela.fill('yellow')
     
     tela.blit(chao,(chao_x, 340)) 
     tela.blit(chao,(chao_x+800,340))
     tela.blit(trex, (trex_x, trex_y)) 
     tela.blit(cacto_img1, (cacto_x, cacto_y))
+    tela.blit(cacto_img2, (cacto_x, cacto_y))
 
     # pontuação
 
